@@ -1,0 +1,29 @@
+@charset "utf-8";
+h1 {
+	text-align: center;
+}
+#h2 {
+}
+#form1 {
+}
+/*# sourceMappingURL=bootstrap.css.map */
+#class {
+}
+
+#studentTitle {
+	text-align: center;
+}
+
+#name,
+#class {
+	float: left;
+	text-align: right;
+}
+
+.marginZero {
+	margin: 0px;
+}
+
+.marginTop5 {
+	margin-top: 5px;
+}
