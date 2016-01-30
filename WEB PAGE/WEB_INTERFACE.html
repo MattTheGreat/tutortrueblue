@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="utf-8">
+    <title>Student</title>
+    <script type="text/javascript">
+    $(function() {
+
+      var button = $("#TutorButton").click(function(event){
+          console.log("clicked button");
+      });
+
+      console.log( "ready!" );
+    });
+
+    </script>
+  </head>
+  <body>
+    <h1>Are You A Student Or A Tutor</h1>
+    <br/>
+    <br/>
+    <input id="TutorButton" type="button" value="Tutor"/>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="button" value="Student"/>
+  </body>
+</html>
