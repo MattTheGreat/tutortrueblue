@@ -1,27 +1,58 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <meta charset="utf-8">
-    <title>Student</title>
-    <script type="text/javascript">
-    $(function() {
+    <head>
+      <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+     <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+   integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <meta charset="utf-8">
+      <title>Student</title>
+      <script type="text/javascript">
+      $(function() {
 
-      var button = $("#TutorButton").click(function(event){
-          console.log("clicked button");
-      });
+       var button = $("#SubmitButton").click(function(event){
+            console.log("clicked button");
+        });
 
-      console.log( "ready!" );
-    });
+     var form = $("#loginForm");
+     $.post({
+       url:"/register"
+       data: JSON.stringify(form.serializeArray());
+     }).done(function(returnInfo)){
 
-    </script>
-  </head>
-  <body>
-    <h1>Are You A Student Or A Tutor</h1>
-    <br/>
-    <br/>
-    <input id="TutorButton" type="button" value="Tutor"/>
-    &nbsp; &nbsp; &nbsp; &nbsp;
-    <input type="button" value="Student"/>
-  </body>
-</html>
+     }
+
+      </script>
+    </head>
+   <body>
+   <form id="loginForm">
+   <style>
+     .jumbotron {
+     background-color: #0000FF; /* Blue */
+     color: #ffffff;
+   }
+
+   </style>
+     <div class="jumbotron">
+       <p align = center
+       <h1 style="font-size:300%;" style="font-family:verdana;">True Blue Registration </h1>
+     </p>
+     </div>
+     <p align = center
+
+     <h3> Full Name: </h3><br>
+     <input type="text" name="firstname"><br>
+
+     Campus ID:<br>
+     <input type="text" name="CampusID"><br>
+
+     Type:<br>
+     <input type="text" name="Type"><br>
+
+     Password:<br>
+     <input type="text" name="Password"><br><br><br>
+
+     <input class="btn btn-danger" id="SubmitButton" type="button" value="SUBMIT"/>
+   </p>
+
+   </form>
+  </html>
