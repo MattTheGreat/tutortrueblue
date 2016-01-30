@@ -1,0 +1,57 @@
+
+DELIMITER //
+Create Procedure  createUser
+(
+	CampusId VARCHAR(5),
+	Name	  VARCHAR(50),
+	UserType BIT,
+	PasswordHash VARCHAR(128),
+	SALT     VARCHAR(128)
+)
+       
+        Begin
+        INSERT INTO  `USERS` (
+	`CampusId` ,
+	`Name` ,
+	`UserType` ,
+	`PasswordHash` ,
+	`Salt`
+	)
+    
+        
+       VALUES (
+		CampusId,  
+		Name, 
+		UserType,  
+		PasswordHash,  
+		SALT
+	);
+      END //
+      DELIMITER ;
+
+
+DELIMITER //
+Create Procedure TutorRequests
+(
+	StudentCampusID VARCHAR(5),
+	Class		 CHAR(4),
+	Topic		 VARCHAR(50),
+	Issue		 VARCHAR(120)
+)
+        BEGIN
+	Insert into TutorRequests (
+	`StudentCampusId` ,
+	`Class` ,
+	`Topic` ,
+	`Issue`
+	)
+	VALUES (
+	StudentCampusId,  
+	Class,  
+	Topic, 
+	Issue
+	);
+
+END //
+
+DELIMITER ;
