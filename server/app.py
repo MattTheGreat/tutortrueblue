@@ -42,6 +42,10 @@ def load_user(user_id):
 	userType = "tutor" if record[2] else "student"
 	return User(record[1], record[0], userType)
 
+@app.route('/')
+def root():
+	return app.send_static_file('index.html')
+
 # load other blueprints into app
 from resource.registration import registration
 app.register_blueprint(registration)
@@ -50,4 +54,4 @@ from resource.student import student
 app.register_blueprint(student)
 
 if __name__ == "__main__":
-	app.run()
+	app.run(host="0.0.0.0")
