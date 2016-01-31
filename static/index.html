@@ -10,17 +10,26 @@
       $(function() {
 
        var button = $("#SubmitButton").click(function(event){
-            console.log("clicked button");
+            var form = $("#loginForm");
+            var list = form.serializeArray();
+            console.log( list );
+            var user = list.reduce( function( acc, element ) {
+              acc[ element.name ] = element.value;
+              return acc;
+            }, {} );
+            console.log("clicked button", user );
+            $.ajax(
+             {
+               url:"/register",
+               method: "POST",
+               contentType: "application/json",
+               data: JSON.stringify( user )
+             }
+            ).done( function( returnInfo ) {
+              console.log( returnInfo );
+            } );
         });
-
-     var form = $("#loginForm");
-     $.post({
-       url:"/register"
-       data: JSON.stringify(form.serializeArray());
-     }).done(function(returnInfo)){
-
-     }
-
+      } );
       </script>
     </head>
    <body>
@@ -40,16 +49,16 @@
      <p align = center
 
      <h3> Full Name: </h3><br>
-     <input type="text" name="firstname"><br>
+     <input type="text" name="name"><br>
 
      Campus ID:<br>
-     <input type="text" name="CampusID"><br>
+     <input type="text" name="campusId"><br>
 
      Type:<br>
-     <input type="text" name="Type"><br>
+     <input type="text" name="type"><br>
 
      Password:<br>
-     <input type="text" name="Password"><br><br><br>
+     <input type="text" name="password"><br><br><br>
 
      <input class="btn btn-danger" id="SubmitButton" type="button" value="SUBMIT"/>
    </p>
