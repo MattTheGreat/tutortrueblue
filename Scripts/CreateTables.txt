@@ -1,0 +1,25 @@
+--
+-- Table structure for table `USERS`
+--
+
+CREATE TABLE IF NOT EXISTS `USERS` (
+  `CampusId` varchar(5) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `UserType` bit(1) NOT NULL,
+  `PasswordHash` varchar(60) NOT NULL,
+  `Salt` varchar(128) NOT NULL,
+  UNIQUE KEY `CampusId` (`CampusId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `TutorRequests`
+--
+
+CREATE TABLE IF NOT EXISTS `TutorRequests` (
+  `StudentCampusId` varchar(5) NOT NULL,
+  `Class` char(4) NOT NULL,
+  `Topic` varchar(50) NOT NULL,
+  `Issue` varchar(128) NOT NULL,
+  UNIQUE KEY `StudentCampusId` (`StudentCampusId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
