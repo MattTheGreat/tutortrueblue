@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `USERS` (
   `CampusId` varchar(5) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `UserType` bit(1) NOT NULL,
-  `Password Hash` varchar(50) NOT NULL,
+  `PasswordHash` varchar(60) NOT NULL,
   `Salt` varchar(128) NOT NULL,
   UNIQUE KEY `CampusId` (`CampusId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

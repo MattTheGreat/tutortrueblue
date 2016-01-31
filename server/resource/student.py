@@ -1,23 +1,32 @@
-from flask import Flask
-from flask import request
-from flask import jsonify
-from flask import abort
+from flask import Flask, request, jsonify, abort, Blueprint, render_template
+from flask.ext.login import (current_user, login_required, login_user, logout_user, confirm_login, fresh_login_required)
 import logging
 import json
-app = Flask(__name__)
+
+from flask import Blueprint, render_template
+from jinja2 import TemplateNotFound
+
+student = Blueprint( "student", __name__ )
+
 students = []
+
 def findByName( name ):
 	for student in students:
 		if student[ "name" ] == name : yield student
-@app.route("/student", methods=['POST'])
+
+@student.route("/student", methods=['POST'])
 def create_student():
 	print( request.json )
 	students.append( request.json )
 	return "ok"
-@app.route("/student", methods=['GET'])
+
+@student.route("/student", methods=['GET'])
+@login_required
 def list_students():
 	return json.dumps( students )
-@app.route("/student/<name>", methods=['GET'])
+
+@student.route("/student/<name>", methods=['GET'])
+@login_required
 def get_student( name ):
 	try:
 		student = [student for student in students if student[ "name" ] == name]
@@ -26,7 +35,9 @@ def get_student( name ):
 		return json.dumps( student[0] )
 	except:
 		logging.exception('')
-@app.route("/student/<name>", methods=['DELETE'])
+
+@student.route("/student/<name>", methods=['DELETE'])
+@login_required
 def delete_student( name ):
 	try:
 		student = [student for student in students if student[ "name" ] == name]
@@ -36,5 +47,4 @@ def delete_student( name ):
 		return "Student removed successfully"
 	except:
 		logging.exception('')
-if __name__ == "__main__":
-    app.run()
+
