@@ -1,8 +1,8 @@
-import MySQLdb
+import pymysql
 import bcrypt
 import logging
 
-db = MySQLdb.connect( host="localhost", user="md2z", passwd="trueblue", db="md2z", port=3306 )
+db = pymysql.connect( host="localhost", user="md2z", passwd="trueblue", db="md2z", port=3306 )
 
 # creates a new user record with a salted, bcrypt hashed password
 def createUser(campusId, name, type, password):
